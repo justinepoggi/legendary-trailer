@@ -1,37 +1,23 @@
-## Welcome to GitHub Pages
+### HTTPS Server Side
 
-You can use the [editor on GitHub](https://github.com/justinepoggi/legendary-trailer/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+HTTPS is used to secure an HTTP connection (encryption of data + authentication of the server from the client's perspective). It uses now TLS as secure protocol but this is still often referred to as SSL (which is the "former" TLS).
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+The client makes a connection to a secure server. The server sends its certificate to the client. The client has a trust store which contains the list of trusted certificates and authorities. The server has either a certificate signed by a certification authority or a self-signed certificate. In both case they need to be present in the trust store of the client for the connection to be secure and successfuly set up. The client could also present its certificate to the server, but that is optional.
 
-### Markdown
+The certificates are signed and verified using private keys. The key store is holding such keys. 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+The JVM has a default trust store under `$JAVA_HOME/lib/security/cacerts`, which contains all the well-known certificates. It has a default password, which is `changeit`.
 
-```markdown
-Syntax highlighted code block
+The trust store and the key store locations can be customised, however this is not usually the case for the trust store. Several system properties can be passed to a Java application to change the default trust store and/or specify a key store.
 
-# Header 1
-## Header 2
-### Header 3
+#### Resources
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/justinepoggi/legendary-trailer/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+[Java trust store and key store configuration](https://doc.nuxeo.com/nxdoc/trust-store-and-key-store-configuration/)
+[HTTPS and Spring Boot](http://zetcode.com/springboot/https/)
+[TLS configuration in Tomcat](https://tomcat.apache.org/tomcat-6.0-doc/ssl-howto.html)
 
 ### Support or Contact
+
+For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
 Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
